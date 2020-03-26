@@ -1,14 +1,19 @@
+//The frontend react app to display the graph data from the 
+//express backend using react-d3-graph library.
+
 import React, { Component } from 'react';
 import './App.css';
 import { Graph } from "react-d3-graph";
 
+// specifications of the graph. This can be customised to whatever you want. Eg. colour/size of nodes.
+// refer to react-d3-graph.js documentation for more info.
 const myConfig = {
     nodeHighlightBehavior: true,
     directed: true,
     node: {
-        color: "lightgreen",
+        color: "#236fff",
         size: 120,
-        highlightStrokeColor: "lightgreen",
+        highlightStrokeColor: "#236fff",
     },
     link: {
         highlightColor: "lightblue",
@@ -17,6 +22,8 @@ const myConfig = {
 };
 
 // graph event callbacks
+// These functions are currently blank but can be modified for many
+// purposes such as showing info about the node when it is clicked.
 const onClickGraph = function() {
     //when graph is clicked 
 };
@@ -63,6 +70,8 @@ const onNodePositionChange = function(nodeId, x, y) {
 
 class App extends Component {
   state = {
+  	// For some reason i had to initialise the data value to something otherwise it was giving error (data value was null even though it had loaded in). 
+  	// PRs to fix this are welcome.
     data: JSON.parse('{"nodes":[{"id":"X"},{"id":"Y"}],"links":[{"source":"X","target":"Y"}]}')
 
   };
@@ -73,7 +82,7 @@ class App extends Component {
       .then(res => this.setState({ data: res.express }))
       .catch(err => console.log(err));
   }
-    // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
+    // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js)
   callBackendAPI = async () => {
     const response = await fetch('/express_backend');
     const body = await response.json();
@@ -84,11 +93,14 @@ class App extends Component {
     return body;
   };
 
+  // render method returns the graph.
   render() {
-    console.log(this.state.data);
+    
     return (
       <div className="App">
-        
+        <h2>Redis Graph visualisation</h2>
+        <p align = 'left' >This is an open source Redis Graph database visualisation tool created using React js front end and Express js backend.</p>
+        <a href = "https://github.com/NandVinchhi/RedisGraphVisualisation">GitHub Repo</a>
         <Graph
             id="graph-id" 
             data={this.state.data}

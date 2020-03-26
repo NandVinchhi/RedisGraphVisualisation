@@ -1,3 +1,6 @@
+//This is the express backend that collects and sends the graph database
+//data to localhost:5000/express_backend. 
+
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
@@ -11,7 +14,7 @@ var res;
 
 (async () =>{
         
-        res = await graph.query("MATCH (n) RETURN n");
+        res = await graph.query("MATCH (n) RETURN n"); //query to return all nodes.
        while (res.hasNext()) {
 
             let record = res.next();
@@ -20,7 +23,7 @@ var res;
             nodes.push(record.get("n").properties);
         }
         
-        res = await graph.query("MATCH (n)-[:connectedto]-(k) RETURN DISTINCT n, k");
+        res = await graph.query("MATCH (n)-[:connectedto]-(k) RETURN DISTINCT n, k");//query to return all links.
         while (res.hasNext()) {
 
             let record = res.next();
@@ -34,7 +37,7 @@ var res;
 
         // create a GET route
         app.get('/express_backend', (req, res) => {
-            res.send({express: {nodes:nodes, links:links}});
+            res.send({express: {nodes:nodes, links:links}});//sending the data in the form of a dictionary object.
         });
     })();
 
