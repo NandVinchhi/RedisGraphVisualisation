@@ -130,16 +130,16 @@ AAAND THATS IT! your app should be up and running.
 The code is explained in the form of comments.
 
 ## Trouble-Shooting
-1. If you receive an error in the redis-cli, ensure that no other server is running on port 6379. 
-2. If there are any errors with node or npm, try upgrading the version.
-3. Ensure that you don't enter any other queries before creating your graph. If you do, then be sure to delete the entire graph and make a fresh one, as it will interfere with the main graph. 
-4. Ensure that all the required packages are installed. Refer to package.json if you have doubts about the packages.
+1. If you receive an error in the __redis-cli__, ensure that no other server is running on __port 6379__. 
+2. If there are any errors with __node__ or __npm__, try upgrading the version.
+3. Ensure that you don't enter any other queries before creating your graph. If you do, then be sure to __delete the entire graph__ and make a fresh one, as it will interfere with the main graph. 
+4. Ensure that all the required packages are installed. Refer to __package.json__ if you have doubts about the packages.
 
 ## To-Do list
 1. Implement a better framework to customise the node shape. 
 2. Implement a way to display the properties of each link in the graph.
-3. In server.js line 75, there is a bug where the data value remains null even after the componentDidMount function. Therefore, I need to initialise it with a graph. This repo is open to any workarounds or optimisations regarding this. 
+3. In __server.js line 75__, there is a bug where the data value remains null even after the componentDidMount function. Therefore, I need to initialise it with a graph. This repo is open to any workarounds or optimisations regarding this. 
 
-Any other optimisations or changes to the README.md are welcome in the form of PRs.
+__Any other optimisations or changes to the README.md are welcome in the form of PRs.__
 
 
