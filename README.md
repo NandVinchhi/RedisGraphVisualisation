@@ -140,7 +140,7 @@ The code is explained in the form of comments.
 ## To-Do list
 1. Implement a better framework to customise the node shape. 
 2. Implement a way to display the properties of each link in the graph.
-3. In __server.js line 75__, there is a bug where the data value remains null even after the componentDidMount function. Therefore, I need to initialise it with a graph. This repo is open to any workarounds or optimisations regarding this. 
+3. In __server.js line 75__, there is a bug where the data value remains null even after the componentDidMount function :( . Therefore, I need to initialise it with a graph. This repo is open to any workarounds or optimisations regarding this. 
 
 __Any other optimisations or changes to the README.md are welcome in the form of PRs.__
 
