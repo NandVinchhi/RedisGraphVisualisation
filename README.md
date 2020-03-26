@@ -92,5 +92,52 @@ GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'E' AND b.id='I') CREA
 GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'F' AND b.id='I') CREATE (a)-[:connectedto]->(b)"
 GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'F' AND b.id='G') CREATE (a)-[:connectedto]->(b)"
 ~~~
+keep this redisgraph server running as it is required for the web app.
+We are now ready to work on the javascript part.
+
+## Step 3: Setting up the web app
+You need __the latest__ versions of __nodejs__ and __npm__ as well as __git__ and __react__ installed.
+
+Then, install the following packages via npm:
+1. [express](https://expressjs.com/)
+2. [redisgraph.js](https://github.com/RedisGraph/redisgraph.js/tree/master)
+3. [react-d3-graph](https://www.npmjs.com/package/react-d3-graph)
+
+Next run the following commands to clone this repo:
+~~~
+git init
+git clone https://github.com/NandVinchhi/RedisGraphVisualisation 
+~~~
+now switch to the 'RedisGraphVisualisation' directory and run:
+~~~
+node server.js
+~~~
+to start the backend server. You should receive a message like:
+~~~
+listening on port 5000
+~~~
+then, in a new terminal, switch to the RedisGraphVisualisation/client directory and run:
+~~~
+npm install
+~~~
+then, run:
+~~~
+npm start
+~~~
+This will automatically open a browser window and start the app at localhost:3000.
+AAAND THATS IT! your app should be up and running.
+
+###trouble-shooting
+1. If you receive an error in the redis-cli, ensure that no other server is running on port 6379. 
+2. If there are any errors with node or npm, try upgrading the version.
+3. Ensure that you don't enter any other queries before creating your graph. If you do, then be sure to delete the entire graph and make a fresh one, as it will interfere with the main graph. 
+4. Ensure that all the required packages are installed. Refer to package.json if you have doubts about the packages.
+
+##To-Do list
+1. Implement a better framework to customise the node shape. 
+2. Implement a way to display the properties of each link in the graph.
+3. In server.js line 75, there is a bug where the data value remains null even after the componentDidMount function. Therefore, I need to initialise it with a graph. This repo is open to any workarounds or optimisations regarding this. 
+
+Any other optimisations or changes to the README.md are welcome in the form of a PR.
 
 
