@@ -127,6 +127,8 @@ npm start
 This will automatically open a browser window and start the app at localhost:3000.
 AAAND THATS IT! your app should be up and running.
 
+__Final App__:
+![](screenshot2.png)
 The code is explained in the form of comments.
 
 ## Trouble-Shooting
