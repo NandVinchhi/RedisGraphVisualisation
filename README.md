@@ -129,7 +129,7 @@ AAAND THATS IT! your app should be up and running.
 
 The code is explained in the form of comments.
 
-### trouble-shooting
+## Trouble-Shooting
 1. If you receive an error in the redis-cli, ensure that no other server is running on port 6379. 
 2. If there are any errors with node or npm, try upgrading the version.
 3. Ensure that you don't enter any other queries before creating your graph. If you do, then be sure to delete the entire graph and make a fresh one, as it will interfere with the main graph. 
