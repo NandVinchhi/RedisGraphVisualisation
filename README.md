@@ -48,5 +48,49 @@ You should get an output like this:
 1:M 23 Mar 2020 11:57:36.999 * Ready to accept connections
 
 ~~~
+Just like that, Your database is set up and running!
+
+## Step 2: Making the graph:
+We shall be making a __simple directed graph__ for visualisation, using the __redis-cli__.
+First run:
+~~~
+redis-cli
+~~~
+You should enter a cli tool that looks like this:
+~~~
+127.0.0.1:6379> 
+~~~
+Next, we run the following commands in the redis-cli to create a sample graph (or create you own)
+~~~
+GRAPH.QUERY graph "CREATE (:node{id:'A'})"
+GRAPH.QUERY graph "CREATE (:node{id:'B'})"
+GRAPH.QUERY graph "CREATE (:node{id:'C'})"
+GRAPH.QUERY graph "CREATE (:node{id:'D'})"
+GRAPH.QUERY graph "CREATE (:node{id:'E'})"
+GRAPH.QUERY graph "CREATE (:node{id:'F'})"
+GRAPH.QUERY graph "CREATE (:node{id:'G'})"
+GRAPH.QUERY graph "CREATE (:node{id:'H'})"
+GRAPH.QUERY graph "CREATE (:node{id:'I'})"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'A' AND b.id='B') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'A' AND b.id='C') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'C' AND b.id='B') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'B' AND b.id='C') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'C' AND b.id='D') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'B' AND b.id='D') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'C' AND b.id='E') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'E' AND b.id='A') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'D' AND b.id='E') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'E' AND b.id='D') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'A' AND b.id='F') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'E' AND b.id='F') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'D' AND b.id='H') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'D' AND b.id='G') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'G' AND b.id='H') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'H' AND b.id='I') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'G' AND b.id='E') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'E' AND b.id='I') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'F' AND b.id='I') CREATE (a)-[:connectedto]->(b)"
+GRAPH.QUERY graph "MATCH (a:node), (b:node) WHERE (a.id = 'F' AND b.id='G') CREATE (a)-[:connectedto]->(b)"
+~~~
 
 
