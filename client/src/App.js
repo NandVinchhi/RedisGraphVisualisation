@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Graph } from "react-d3-graph";
 
+var server_url = 'http://localhost:5000/express_backend'
 // specifications of the graph. This can be customised to whatever you want. Eg. colour/size of nodes.
 // refer to react-d3-graph.js documentation for more info.
 const myConfig = {
@@ -72,19 +73,33 @@ class App extends Component {
   state = {
   	// For some reason i had to initialise the data value to something otherwise it was giving error (data value was null even though it had loaded in). 
   	// PRs to fix this are welcome.
-    data: JSON.parse('{"nodes":[{"id":"X"},{"id":"Y"}],"links":[{"source":"X","target":"Y"}]}')
-
+    data: JSON.parse('{"nodes":[{"id":"X"},{"id":"Y"}],"links":[{"source":"X","target":"Y"}]}'),
+    tagged: false, 
+    input1: 'http://localhost:5000/express_backend',
   };
 
-  componentDidMount() {
-      // Call our fetch function below once the component mounts
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
-  }
+  handleClick(e) {
+        // access input values in the state
+        this.callBackendAPI()
+        .then(res => this.setState({ data: res.express }))
+        .catch(err => console.log(err));
+        this.setState({tagged: true});
+
+        e.preventDefault();
+
+    }
+
+  handleInputChange = (e, name) => {
+      this.setState({
+       [name]: e.target.value
+     })
+    }
+
+
     // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js)
   callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
+
+    const response = await fetch(this.state.input1);
     const body = await response.json();
 
     if (response.status !== 200) {
@@ -95,12 +110,18 @@ class App extends Component {
 
   // render method returns the graph.
   render() {
-    
+    console.log(this.handleChange);
     return (
+      
       <div className="App">
-        <h2>Redis Graph visualisation</h2>
-        <p align = 'left' >This is an open source Redis Graph database visualisation tool created using React js front end and Express js backend.</p>
-        <a href = "https://github.com/NandVinchhi/RedisGraphVisualisation">GitHub Repo</a>
+        
+        <h2 style={{color: "#234069"}}>Redis Graph Visualisation</h2>
+        <p>This is an open source Redis Graph database visualisation tool created using React js front end and Express js backend. <a href = "https://github.com/NandVinchhi/RedisGraphVisualisation">GitHub Repo</a></p>
+        
+        <input style={{width: "50%"}} placeholder="Enter backend server URL" type="text" onChange={(e) => this.handleInputChange(e, 'input1')}></input>
+        <button onClick={(e) => this.handleClick(e)}>send</button>
+
+
         <Graph
             id="graph-id" 
             data={this.state.data}
@@ -118,6 +139,7 @@ class App extends Component {
             onNodePositionChange={onNodePositionChange}
             />
       </div>
+      
     );
   }
 }
