@@ -102,6 +102,7 @@ Then, install the following packages via npm:
 1. [express](https://expressjs.com/)
 2. [redisgraph.js](https://github.com/RedisGraph/redisgraph.js/tree/master)
 3. [react-d3-graph](https://www.npmjs.com/package/react-d3-graph)
+4. [cors](https://www.npmjs.com/package/cors)
 
 Next run the following commands to clone this repo:
 ~~~
@@ -125,7 +126,9 @@ then, run:
 npm start
 ~~~
 This will automatically open a browser window and start the app at localhost:3000.
-AAAND THATS IT! your app should be up and running.
+AAAND THATS IT! your app should be up and running. Type in the URL of your backend server (in this case 'http://localhost:5000/express_backend') in the text box and hit 'send'. The graph should render.
+
+__Note that if you are using your own backend server, it needs to have cors enabled.__
 
 __Final App__:
 ![](screenshot2.png)
