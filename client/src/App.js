@@ -11,10 +11,13 @@ var server_url = 'http://localhost:5000/express_backend'
 const myConfig = {
     nodeHighlightBehavior: true,
     directed: true,
+    
     node: {
         color: "#236fff",
         size: 120,
         highlightStrokeColor: "#236fff",
+        fontSize: 12,
+
     },
     link: {
         highlightColor: "lightblue",
