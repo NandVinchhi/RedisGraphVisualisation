@@ -129,7 +129,9 @@ AAAND THATS IT! your app should be up and running. Type in the URL of your backe
 __Note that if you are using your own backend server, it needs to have cors enabled.__
 
 __Final App__:
+
 ![](screenshot.png)
+
 The code is explained in the form of comments.
 
 ## Trouble-Shooting
