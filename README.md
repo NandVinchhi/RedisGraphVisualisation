@@ -1,8 +1,6 @@
 # Redis Graph Visualisation
 [__redisgraph__](https://oss.redislabs.com/redisgraph/) is a __highly performant graph database__ that runs in memory and can be accessed using the __Cypher query language__. This is an open source tool, built with __React js__ and __Express backend__ to visualise this graph data. We shall be looking at how to set it up.
 
-![](screenshot.png)
-
 __Note that this entire process was done on ubuntu.__
 
 ## Step 1: Set up redisgraph
@@ -131,7 +129,7 @@ AAAND THATS IT! your app should be up and running. Type in the URL of your backe
 __Note that if you are using your own backend server, it needs to have cors enabled.__
 
 __Final App__:
-![](screenshot2.png)
+![](screenshot.png)
 The code is explained in the form of comments.
 
 ## Trouble-Shooting
