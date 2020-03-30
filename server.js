@@ -3,8 +3,10 @@
 
 const express = require('express');
 const app = express();
-var cors = require('cors')
+const bodyParser = require('body-parser'); 
+app.use(bodyParser.json()); 
 
+var cors = require('cors')
 app.use(cors())
 
 const port = process.env.PORT || 5000;
@@ -14,36 +16,39 @@ let graph = new RedisGraph("graph");
 
 var nodes = [];
 var links = [];
-var res;
 
+// console.log that your server is up and running
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
-
-(async () =>{
+app.post('/express_backend', function(req, res) {
+    
+    (async () =>{
         
-        res = await graph.query("MATCH (n) RETURN n"); //query to return all nodes.
-       while (res.hasNext()) {
+        nodes = [];
+        links = [];
+        res1 = await graph.query(req.body.message);//query to return links.
+        
+        while (res1.hasNext()) {
 
-            let record = res.next();
+            let record = res1.next();
             
-               
-            nodes.push(record.get("n").properties);
+            
+            nodes.push(record.get(res1._typelessHeader[0]).properties);
+            nodes.push(record.get(res1._typelessHeader[1]).properties)
+            links.push({source:record.get(res1._typelessHeader[0]).properties.id, target:record.get(res1._typelessHeader[1]).properties.id});
         }
         
-        res = await graph.query("MATCH (n)-[:connectedto]-(k) RETURN DISTINCT n, k");//query to return all links.
-        while (res.hasNext()) {
+        
 
-            let record = res.next();
-            
-            
-            
-            links.push({source:record.get("n").properties.id, target:record.get("k").properties.id});
-        }
-        // console.log that your server is up and running
-        app.listen(port, () => console.log(`Listening on port ${port}`));
 
         // create a GET route
-        app.get('/express_backend', (req, res) => {
-            res.send({express: {nodes:nodes, links:links}});//sending the data in the form of a dictionary object.
-        });
+        
     })();
+    app.get('/express_backend', (req, res) => {
+            res.send({express: {nodes:nodes, links:links}});//sending the data in the form of a dictionary object.
+    });
+});
+
+
+
 

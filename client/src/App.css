@@ -1,11 +1,12 @@
 .App {
   text-align: left;
   color: #454545;
-  font-family: Courier new;
+  font-family: Arial;
   margin-top: 20px;
   margin-bottom: 20px;
   margin-right: 20px;
   margin-left: 20px;
+  font-size: 12pt;
 }
 
 .App-logo {
