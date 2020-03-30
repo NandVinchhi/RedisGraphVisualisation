@@ -124,7 +124,7 @@ then, run:
 npm start
 ~~~
 This will automatically open a browser window and start the app at localhost:3000.
-AAAND THATS IT! your app should be up and running. Type in the URL of your backend server (in this case 'http://localhost:5000/express_backend') as well as the graph query (in this case 'MATCH (a)-[:connectedto]->(b) RETURN a, b', which returns the entire graph) in the text boxes and hit 'send'. The graph should render. Note that there is a bug where sometimes you need to press 'send' 2 times for it to render.
+AAAND THATS IT! your app should be up and running. Type in the URL of your backend server (in this case 'http://localhost:5000/express_backend') as well as the graph query (in this case 'MATCH (a)-[:connectedto]->(b) RETURN a, b', which returns the entire graph) in the text boxes and hit 'send'. The graph should render. __Note that there is a bug where sometimes you need to press 'send' 2 times for it to render.__
 
 __Note that if you are using your own backend server, it needs to have cors enabled.__
 
