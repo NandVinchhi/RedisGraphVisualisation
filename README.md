@@ -124,7 +124,7 @@ then, run:
 npm start
 ~~~
 This will automatically open a browser window and start the app at localhost:3000.
-AAAND THATS IT! your app should be up and running. Type in the URL of your backend server (in this case 'http://localhost:5000/express_backend') in the text box and hit 'send'. The graph should render.
+AAAND THATS IT! your app should be up and running. Type in the URL of your backend server (in this case 'http://localhost:5000/express_backend') as well as the graph query (in this case 'MATCH (a)-[:connectedto]->(b) RETURN a, b', which returns the entire graph) in the text boxes and hit 'send'. The graph should render. Note that there is a bug where sometimes you need to press 'send' 2 times for it to render.
 
 __Note that if you are using your own backend server, it needs to have cors enabled.__
 
@@ -144,6 +144,7 @@ The code is explained in the form of comments.
 1. Implement a better framework to customise the node shape. 
 2. Implement a way to display the properties of each link in the graph.
 3. In __server.js line 75__, there is a bug where the data value remains null even after the componentDidMount function :( . Therefore, I need to initialise it with a graph. This repo is open to any workarounds or optimisations regarding this. 
+4. Fixing the bug where you need to hit 'send' 2 times to render the graph.
 
 __Any other optimisations or changes to the README.md are welcome in the form of PRs.__
 
