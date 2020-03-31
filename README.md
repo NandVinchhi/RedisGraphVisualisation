@@ -101,6 +101,7 @@ Then, install the following packages via npm:
 2. [redisgraph.js](https://github.com/RedisGraph/redisgraph.js/tree/master)
 3. [react-d3-graph](https://www.npmjs.com/package/react-d3-graph)
 4. [cors](https://www.npmjs.com/package/cors)
+5. body-parser
 
 Next run the following commands to clone this repo:
 ~~~
